@@ -1,3 +1,9 @@
+import pandas as pd
+import cx_Oracle
+
+cx_Oracle.init_oracle_client(lib_dir=r'~/instantclient_19_8',
+                             config_dir=r'~/instantclient_19_8/network/admin/')
+
 def get_oracle_connection(query, mode, data_list=None):
     '''returns datafarame for select query and 1 if record is inserted'''
 
