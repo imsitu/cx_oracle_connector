@@ -4,6 +4,8 @@ import cx_Oracle
 cx_Oracle.init_oracle_client(lib_dir=r'~/instantclient_19_8',
                              config_dir=r'~/instantclient_19_8/network/admin/')
 
+protocol == 'tcps'
+
 def get_oracle_connection(query, mode, data_list=None):
     '''returns datafarame for select query and 1 if record is inserted'''
 
@@ -12,7 +14,7 @@ def get_oracle_connection(query, mode, data_list=None):
     # we form dns string to work with tcps protocol
     #connect_string="username/password@host:port/SID"
     try:
-        if type == 'tcps':
+        if protocol == 'tcps':
             tcps_details = connect_string.replace("/", " ").replace("@", " ").replace(":", " ").split(" ")
             dns = "(DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCPS)(HOST = " + tcps_details[
                 2] + ")(PORT = " + tcps_details[3] + ")))(CONNECT_DATA = (SERVICE_NAME = " + tcps_details[4] + ")))"
